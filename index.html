@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Into The Okavango</title>
+<link rel="stylesheet" href="js/jquery.mobile-1.4.3/jquery.mobile-1.4.3.css" />
+<link rel="stylesheet" href="themes/styles.css" />
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery.mobile-1.4.3/jquery.mobile-1.4.3.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" charset="utf-8" src="app.js"></script>
+<style type="text/css">
+a.normal, a.normal:hover {
+	color: #FFF;
+	background-color: #000;
+	margin: 0;
+	padding: 0;
+	float: left;
+	text-decoration: none;
+	text-shadow: none;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<div style="display:none;">
+  <p id="media">Recording audio...</p>
+  <p id="audio_position"></p>
+  <p id="gpsInfo">Watching geolocation...</p>
+  <p id="compassInfo">Watching Compass...</p>
+  <p id="accelInfo">Watching Accel...</p>
+  <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Reed Cormorant')">
+  <div class="reportbtn btnLg">
+    <p>Reed Cormorant</p>
+  </div>
+  </a> <a class="normal" href="#report-other" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('')">
+  <div class="reportbtn btnLg">
+    <p>Other</p>
+  </div>
+  </a> <br>
+  <a href="#" onClick="capturePhoto()">UPLOAD PHOTO</a> <br class="clear">
+</div>
+<!-- TEST BTNS ---------------------------->
+
+<div id="wrapper">
+<div id="mainBtnGroup"> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Jacana')">
+  <div class="reportbtn btnLg">
+    <p>African Jacana</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Lesser Jacana')">
+  <div class="reportbtn btnLg">
+    <p>Lesser Jacana</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Darter')">
+  <div class="reportbtn btnLg">
+    <p>African Darter</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Reed Cormorant')">
+  <div class="reportbtn btnLg">
+    <p>Reed Cormorant</p>
+  </div>
+  </a> <br class="clear">
+  <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Black Crake')">
+  <div class="reportbtn btnLg">
+    <p>Black Crake</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Pygmy Goose')">
+  <div class="reportbtn btnLg">
+    <p>African Pygmy Goose</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Fish Eagle')">
+  <div class="reportbtn btnLg">
+    <p>African Fish Eagle</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Marsh Harrier')">
+  <div class="reportbtn btnLg">
+    <p>African Marsh Harrier</p>
+  </div>
+  </a> <br class="clear">
+  <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Great Egret')">
+  <div class="reportbtn btnLg">
+    <p>Great Egret</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Little Egret')">
+  <div class="reportbtn btnLg">
+    <p>Little Egret</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Purple Heron')">
+  <div class="reportbtn btnLg">
+    <p>Purple Heron</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Squacco Heron')">
+  <div class="reportbtn btnLg">
+    <p>Squacco Heron</p>
+  </div>
+  </a> <br class="clear">
+  <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Malachite Kingfisher')">
+  <div class="reportbtn btnLg">
+    <p>Malachite Kingfisher</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Pied Kingfisher')">
+  <div class="reportbtn btnLg">
+    <p>Pied Kingfisher</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Openbill Stork')">
+  <div class="reportbtn btnLg">
+    <p>African Openbill Stork</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Swamp Boubou')">
+  <div class="reportbtn btnLg">
+    <p>Swamp Boubou</p>
+  </div>
+  </a> <br class="clear">
+</div>
+<!-- mainBtnGroup--> 
+<a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Hamerkop')">
+<div class="reportbtn btnSm">
+  <p>Hamerkop</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Little Bee-eater')">
+<div class="reportbtn btnSm">
+  <p>Little Bee-eater</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Burchell's Coucal')">
+<div class="reportbtn btnSm">
+  <p>Burchell's Coucal</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Coppery-tailed Coucal')">
+<div class="reportbtn btnSm">
+  <p>Coppery-tailed Coucal</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Senegal Coucal')">
+<div class="reportbtn btnSm">
+  <p>Senegal Coucal</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('White-browed Coucal')">
+<div class="reportbtn btnSm">
+  <p>White-browed Coucal</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Crake')">
+<div class="reportbtn btnSm">
+  <p>African Crake</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Wattled Crane')">
+<div class="reportbtn btnSm">
+  <p>Wattled Crane</p>
+</div>
+</a> 
+<!--row--> 
+<a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Finfoot')">
+<div class="reportbtn btnSm">
+  <p>African Finfoot</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Cape Teal')">
+<div class="reportbtn btnSm">
+  <p>Cape Teal</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Comb Duck')">
+<div class="reportbtn btnSm">
+  <p>Comb Duck</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Egyptian Goose')">
+<div class="reportbtn btnSm">
+  <p>Egyptian Goose</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Little Grebe')">
+<div class="reportbtn btnSm">
+  <p>Little Grebe</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Red-billed Teal')">
+<div class="reportbtn btnSm">
+  <p>Red-billed Teal</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Spur-winged Goose')">
+<div class="reportbtn btnSm">
+  <p>Spur-winged Goose</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('White-backed Duck')">
+<div class="reportbtn btnSm">
+  <p>White-backed Duck</p>
+</div>
+</a> 
+<!--row--> 
+<a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('White-faced Duck')">
+<div class="reportbtn btnSm">
+  <p>White-faced Duck</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Yellow-billed Duck')">
+<div class="reportbtn btnSm">
+  <p>Yellow-billed Duck</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Cattle Egret')">
+<div class="reportbtn btnSm">
+  <p>Cattle Egret</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Slaty Egret')">
+<div class="reportbtn btnSm">
+  <p>Slaty Egret</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Yellow-billed Egret')">
+<div class="reportbtn btnSm">
+  <p>Yellow-billed Egret</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Grey-headed Gull')">
+<div class="reportbtn btnSm">
+  <p>Grey-headed Gull</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Swamphen')">
+<div class="reportbtn btnSm">
+  <p>African Swamphen</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Common Moorhen')">
+<div class="reportbtn btnSm">
+  <p>Common Moorhen</p>
+</div>
+</a> 
+<!--row--> 
+<a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Lesser Moorhen')">
+<div class="reportbtn btnSm">
+  <p>Lesser Moorhen</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Red-knobbed Coot')">
+<div class="reportbtn btnSm">
+  <p>Red-knobbed Coot</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Black Heron')">
+<div class="reportbtn btnSm">
+  <p>Black Heron</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Black-headed Heron')">
+<div class="reportbtn btnSm">
+  <p>Black-headed Heron</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Goliath Heron')">
+<div class="reportbtn btnSm">
+  <p>Goliath Heron</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Green-backed Heron')">
+<div class="reportbtn btnSm">
+  <p>Green-backed Heron</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Grey Heron')">
+<div class="reportbtn btnSm">
+  <p>Grey Heron</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Rufous-bellied Heron')">
+<div class="reportbtn btnSm">
+  <p>Rufous-bellied Heron</p>
+</div>
+</a> 
+<!--row--> 
+<a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Black-crowned Night-Heron')">
+<div class="reportbtn btnSm">
+  <p>Black-crowned Night-Heron</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('White-backed Night-Heron')">
+<div class="reportbtn btnSm">
+  <p>White-backed Night-Heron</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Hadeda Ibis')">
+<div class="reportbtn btnSm">
+  <p>Hadeda Ibis</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Sacred Ibis')">
+<div class="reportbtn btnSm">
+  <p>Sacred Ibis</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Pygmy Kingfisher')">
+<div class="reportbtn btnSm">
+  <p>African Pygmy Kingfisher</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Giant Kingfisher')">
+<div class="reportbtn btnSm">
+  <p>Giant Kingfisher</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Grey-headed Kingfisher')">
+<div class="reportbtn btnSm">
+  <p>Grey-headed Kingfisher</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Half-collared Kingfisher')">
+<div class="reportbtn btnSm">
+  <p>Half-collared Kingfisher</p>
+</div>
+</a> 
+<!--row--> 
+<a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Wattled Lapwing')">
+<div class="reportbtn btnSm">
+  <p>African Wattled Lapwing</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Blacksmith Lapwing')">
+<div class="reportbtn btnSm">
+  <p>Blacksmith Lapwing</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Long-toed Lapwing')">
+<div class="reportbtn btnSm">
+  <p>Long-toed Lapwing</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Three-banded Plover')">
+<div class="reportbtn btnSm">
+  <p>Three-banded Plover</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Meyer's Parrot')">
+<div class="reportbtn btnSm">
+  <p>Meyer's Parrot</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Great White Pelican')">
+<div class="reportbtn btnSm">
+  <p>Great White Pelican</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Common Sandpiper')">
+<div class="reportbtn btnSm">
+  <p>Common Sandpiper</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Collared Pratincole')">
+<div class="reportbtn btnSm">
+  <p>Collared Pratincole</p>
+</div>
+</a> 
+<!--row--> 
+<a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Fan-tailed Widowbird')">
+<div class="reportbtn btnSm">
+  <p>Fan-tailed Widowbird</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Southern Red Bishop')">
+<div class="reportbtn btnSm">
+  <p>Southern Red Bishop</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Thick-billed Weaver')">
+<div class="reportbtn btnSm">
+  <p>Thick-billed Weaver</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Snipe')">
+<div class="reportbtn btnSm">
+  <p>African Snipe</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Great Snipe')">
+<div class="reportbtn btnSm">
+  <p>Great Snipe</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Greater Painted Snipe')">
+<div class="reportbtn btnSm">
+  <p>Greater Painted Snipe</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Spoonbill')">
+<div class="reportbtn btnSm">
+  <p>African Spoonbill</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Black-winged Stilt')">
+<div class="reportbtn btnSm">
+  <p>Black-winged Stilt</p>
+</div>
+</a> 
+<!--row--> 
+<a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Common Whimbrel')">
+<div class="reportbtn btnSm">
+  <p>Common Whimbrel</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Little Stint')">
+<div class="reportbtn btnSm">
+  <p>Little Stint</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Pied Avocet')">
+<div class="reportbtn btnSm">
+  <p>Pied Avocet</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Abdim's Stork')">
+<div class="reportbtn btnSm">
+  <p>Abdim's Stork</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Black Stork')">
+<div class="reportbtn btnSm">
+  <p>Black Stork</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Marabou Stork')">
+<div class="reportbtn btnSm">
+  <p>Marabou Stork</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Saddle-billed Stork')">
+<div class="reportbtn btnSm">
+  <p>Saddle-billed Stork</p>
+</div>
+</a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Wooly-necked Stork')">
+<div class="reportbtn btnSm">
+  <p>Wooly-necked Stork</p>
+</div>
+</a> 
+<!--row--> 
+<br class="clear">
+<!--
+FINAL 2 ROWS
+-->
+<div style="width:1120px; float:left;"> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Yellow-billed Stork')">
+  <div class="reportbtn btnSm ">
+    <p>Yellow-billed Stork</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('African Skimmer')">
+  <div class="reportbtn btnSm">
+    <p>African Skimmer</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Whiskered Tern')">
+  <div class="reportbtn btnSm">
+    <p>Whiskered Tern</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Water Thick-knee')">
+  <div class="reportbtn btnSm">
+    <p>Water Thick-knee</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Common Greenshank')">
+  <div class="reportbtn btnSm">
+    <p>Common Greenshank</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Common Wagtail')">
+  <div class="reportbtn btnSm">
+    <p>Common Wagtail</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Greater Reed Warbler')">
+  <div class="reportbtn btnSm">
+    <p>Greater Reed Warbler</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Lesser Swamp Warbler')">
+  <div class="reportbtn btnSm">
+    <p>Lesser Swamp Warbler</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Little Rush-Warbler')">
+  <div class="reportbtn btnSm">
+    <p>Little Rush-Warbler</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Boat')">
+  <div class="reportbtn btnSm">
+    <p>Boat</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Fishing')">
+  <div class="reportbtn btnSm">
+    <p>Fishing</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Mokoro')">
+  <div class="reportbtn btnSm">
+    <p>Mokoro</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('People')">
+  <div class="reportbtn btnSm">
+    <p>People</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Test')">
+  <div class="reportbtn btnSm">
+    <p>Tigerfish</p>
+  </div>
+  </a> 
+  
+  <!--row--> 
+  <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Test')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Day Lilly</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Night Lilly')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Night Lilly</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Oxygen Weed')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Oxygen Weed</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Salvinia molesta')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Salvinia molesta</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Water Chestnut')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Water Chestnut</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Water Lettuce')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Water Lettuce</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('White Otelia')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>White Otelia</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Yellow Otelia')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Yellow Otelia</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Elephant')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Elephant</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Hippo')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Hippo</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Red Lechwe')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Red Lechwe</p>
+  </div>
+  </a> <a class="normal" href="#report" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('Crocodile')">
+  <div class="reportbtn btnSm btnBottom">
+    <p>Crocodile</p>
+  </div>
+  </a> <a class="normal" href="#"  onClick="capturePhoto()">
+  <div class="reportbtn btnSm btnBottom other">
+    <p>Photo</p>
+  </div>
+  </a> 
+  
+  <!--row--> 
+</div>
+<a class="normal" href="#report-other" data-rel="popup" data-position-to="window"  class="ui-btn   ui-btn-inline  ui-btn-a" data-transition="none" onClick="setvalue('')">
+<div class="reportbtn btnLg ">
+  <p>Other</p>
+</div>
+</a> 
+
+<!-- POPUPS ------------------------------->
+
+<div data-role="popup" id="report" data-theme="a" data-corners="false" data-shadow="false">
+  <form id="sightingForm" >
+    <div style="padding:10px 20px; height:auto;">
+      <input type="hidden" name="TeamMember" id="TeamMember" value="Jer" data-theme="a" data-mini="true">
+      <label for="Bird Name" >Species:</label>
+      <input type="text" name="Bird Name" id="name" value=""  data-theme="a" >
+      <fieldset data-role="controlgroup">
+        <legend>Activity:</legend>
+        <input type="radio" name="Activity" id="N" value="N" checked="checked" />
+        <label for="N">N</label>
+        <input type="radio" name="Activity" id="F" value="F"  />
+        <label for="F">F</label>
+        <input type="radio" name="Activity" id="R" value="R"  />
+        <label for="R">R</label>
+        <input type="radio" name="Activity" id="L" value="L"  />
+        <label for="L">L</label>
+      </fieldset>
+      <label for="count" >Count:</label>
+      <input type="number" name="Count" id="Count" value="" placeholder="" data-theme="a" data-clear-btn="true" >
+      <input type="hidden" name="CompassHeading" id="CompassHeading" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="Latitude" id="Latitude" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="Longitude" id="Longitude" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="Accuracy" id="Accuracy" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="AccelerometerX" id="AccelerometerX" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="AccelerometerY" id="AccelerometerY" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="AccelerometerZ" id="AccelerometerZ" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="DateTime" id="DateTime" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="t_utc" id="t_utc" value="" data-theme="a" data-mini="true">
+      <p id="loader">Loading Sensor Data ...</p>
+      <a href="#"  data-rel="back" id="recordSighting" class="ui-btn" onClick="submitSighting()">SAVE</a> </div>
+  </form>
+</div>
+<!--REPORT OTHER------------------------>
+
+<div data-role="popup" id="report-other" data-theme="a" data-corners="false" data-shadow="false">
+  <form id="otherForm" >
+    <div style="padding:10px 20px; height:auto;">
+      <input type="hidden" name="TeamMember" id="TeamMember2" value="Jer" data-theme="a" data-mini="true">
+      <input type="text" name="Bird Name" id="name2" value=""  data-theme="a">
+      <label for="Bird Name" >Species:</label>
+      <select id="other">
+        <option value="White-breasted Cormorant">White-breasted Cormorant</option>
+        <option value="Baillon's Crake">Baillon's Crake</option>
+        <option value="Red-chested Flufftail">Red-chested Flufftail</option>
+        <option value="Ruff">Ruff</option>
+        <option value="Spotted Crake">Spotted Crake</option>
+        <option value="Striped Crake">Striped Crake</option>
+        <option value="Fulvous Duck">Fulvous Duck</option>
+        <option value="Garganey">Garganey</option>
+        <option value="Hottentot Teal">Hottentot Teal </option>
+        <option value="Northern Pintail">Northern Pintail</option>
+        <option value="Southern Pochard">Southern Pochard</option>
+        <option value="Montagu's Harrier">Montagu's Harrier</option>
+        <option value="Western Marsh Harrier">Western Marsh Harrier</option>
+        <option value="Pike">Pike</option>
+        <option value="Greater Flamingo">Greater Flamingo</option>
+        <option value="Lesser Flamingo">Lesser Flamingo</option>
+        <option value="Allen's Gallinule">Allen's Gallinule</option>
+        <option value="Dwarf Bittern">Dwarf Bittern</option>
+        <option value="Eurasian Bittern">Eurasian Bittern</option>
+        <option value="Glossy Ibis">Glossy Ibis</option>
+        <option value="Common-ringed Plover">Common-ringed Plover</option>
+        <option value="Crowned Lapwing">Crowned Lapwing</option>
+        <option value="Kittlitz's Plover">Kittlitz's Plover</option>
+        <option value="White-crowned Lapwing">White-crowned Lapwing</option>
+        <option value="White-fronted Plover">White-fronted Plover</option>
+        <option value="Pel's Fishing Owl">Pel's Fishing Owl</option>
+        <option value="Pin-backed Pelican">Pin-backed Pelican</option>
+        <option value="Pinked-backed Pelican">Pinked-backed Pelican</option>
+        <option value="Black-winged Pratincole">Black-winged Pratincole</option>
+        <option value="African Rail">African Rail</option>
+        <option value="Curlew Sandpiper">Curlew Sandpiper</option>
+        <option value="Green Sandpiper">Green Sandpiper</option>
+        <option value="Marsh Sandpiper">Marsh Sandpiper</option>
+        <option value="Pectoral Sandpiper">Pectoral Sandpiper</option>
+        <option value="Spotted Sandpiper">Spotted Sandpiper</option>
+        <option value="Wood Sandpiper">Wood Sandpiper</option>
+        <option value="Brown-throated Weaver">Brown-throated Weaver</option>
+        <option value="Sedge Warbler">Sedge Warbler</option>
+        <option value="Yellow-crowned Bishop">Yellow-crowned Bishop</option>
+        <option value="Black-tailed Godwit">Black-tailed Godwit</option>
+        <option value="Cape Shoveler">Cape Shoveler</option>
+        <option value="Common Redshank">Common Redshank</option>
+        <option value="Eurasian Godwit">Eurasian Godwit</option>
+        <option value="Red Phalarope">Red Phalarope</option>
+        <option value="White Stork">White Stork</option>
+        <option value="White-winged Tern">White-winged Tern</option>
+        <option value="Spotted Thick-knee">Spotted Thick-knee</option>
+      </select>
+      <fieldset data-role="controlgroup" data-clear-btn="true" >
+        <legend>Activity:</legend>
+        <input type="radio" name="Activity" id="N2" value="N" />
+        <label for="N2">N</label>
+        <input type="radio" name="Activity" id="F2" value="F"  />
+        <label for="F2">F</label>
+        <input type="radio" name="Activity" id="R2" value="R"  />
+        <label for="R2">R</label>
+        <input type="radio" name="Activity" id="L2" value="L"  />
+        <label for="L2">L</label>
+      </fieldset>
+      <label for="count" >Count:</label>
+      <input type="number" name="Count" id="Count2" value="" placeholder="" data-theme="a" data-clear-btn="true" >
+      <input type="hidden" name="CompassHeading" id="CompassHeading2" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="Latitude" id="Latitude2" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="Longitude" id="Longitude2" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="Accuracy" id="Accuracy2" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="AccelerometerX" id="AccelerometerX2" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="AccelerometerY" id="AccelerometerY2" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="AccelerometerZ" id="AccelerometerZ2" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="DateTime" id="DateTime2" value="" data-theme="a" data-mini="true">
+      <input type="hidden" name="t_utc" id="t_utc2" value="" data-theme="a" data-mini="true">
+      <p id="loader">Loading Sensor Data ...</p>
+      <a href="#"  data-rel="back" id="recordOther" class="ui-btn" onClick="submitSightingOther()">SAVE</a> </div>
+  </form>
+  <script type="text/javascript">
+		 var mytextbox = document.getElementById('name2');
+        var mydropdown = document.getElementById('other');
+        
+        mydropdown.onchange = function(){
+             mytextbox.value = mytextbox.value  + this.value;
+        }
+		
+       </script> 
+</div>
+</ 
+
+<!--REPORT ETHNOGRAPHIC------------------------>
+<div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="a"> 
+  <!-- panel content goes here -->
+  
+  <form action=""  name="membersettings" id="membersettings">
+    <label for="member" >UpdateTeam Member:</label>
+    <select name="member" id ="member">
+      <option value="Chaps">Chaps</option>
+      <option value="Chris">Chris</option>
+      <option value="GB">GB</option>
+      <option value="Giles">Giles</option>
+      <option value="Gregg">Gregg</option>
+      <option value="James">James</option>
+      <option value="Jer">Jer</option>
+      <option value="John">John</option>
+      <option value="KG">KG</option>
+      <option value="Leilamang">Leilamang</option>
+      <option value="Neil">Neil</option>
+      <option value="Pieter">Pieter</option>
+      <option value="Shah">Shah</option>
+      <option value="Steve">Steve</option>
+      <option value="Tom">Tom</option>
+    </select>
+    <a href="#" onClick="updateTeamMember()" class="ui-btn">UPDATE TEAM MEMBER</a>
+  </form>
+  <br>
+  <form action=""  name="serversettings" id="serversettings">
+    <label for="server" >Enter New IP Address:</label>
+    <input name="server" id ="server" type="text" data-clear-btn="true" >
+    <a href="#" onClick="updateServerWrite()" class="ui-btn">UPDATE SERVER INFO</a>
+  </form>
+  <br>
+  <form class="userform" id="ethnoForm" data-ajax="false">
+    <h3>Ethnographic Data</h3>
+    <input type="hidden" name="TeamMember" id="TeamMember3" value="Jer" data-theme="a" data-mini="true">
+    <label for="Exhaustion">Exhaustion Level</label>
+    <input type="range" name="Exhaustion" min="0" max="11" id="exhaustion" value="5" data-mini="false">
+    <label for="Mood">Mood</label>
+    <input type="text" name="Mood" id="mood" value="" data-theme="a"  data-clear-btn="true" >
+    <label for="LastSpoken">Spoke with Last? </label>
+    <select name="LastSpoken" id="lastSpoken">
+      <option value="Chaps">Chaps</option>
+      <option value="Chris">Chirs</option>
+      <option value="GB">GB</option>
+      <option value="Giles">Giles</option>
+      <option value="Gregg">Gregg</option>
+      <option value="James">James</option>
+      <option value="Jer">Jer</option>
+      <option value="John">John</option>
+      <option value="KG">KG</option>
+      <option value="Leilamang">Leilamang</option>
+      <option value="Neil">Neil</option>
+      <option value="Pieter">Pieter</option>
+      <option value="Shah">Shah</option>
+      <option value="Steve">Steve</option>
+      <option value="Tom">Tom</option>
+    </select>
+    <input type="hidden" name="CompassHeading" id="CompassHeading3" value="" data-theme="a" data-mini="true">
+    <input type="hidden" name="Latitude" id="Latitude3" value="" data-theme="a" data-mini="true">
+    <input type="hidden" name="Longitude" id="Longitude3" value="" data-theme="a" data-mini="true">
+    <input type="hidden" name="Accuracy" id="Accuracy3" value="" data-theme="a" data-mini="true">
+    <input type="hidden" name="AccelerometerX" id="AccelerometerX3" value="" data-theme="a" data-mini="true">
+    <input type="hidden" name="AccelerometerY" id="AccelerometerY3" value="" data-theme="a" data-mini="true">
+    <input type="hidden" name="AccelerometerZ" id="AccelerometerZ3" value="" data-theme="a" data-mini="true">
+    <input type="hidden" name="DateTime" id="DateTime3" value="" data-theme="a" data-mini="true">
+    <input type="hidden" name="t_utc" id="t_utc3" value="" data-theme="a" data-mini="true">
+    <a href="#"  data-rel="back" id="recordEthno" class="ui-btn" onClick="submitEthnographic()">SAVE</a>
+  </form>
+</div>
+</body>
+</html>
